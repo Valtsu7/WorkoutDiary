@@ -12,6 +12,7 @@ const Settings = ({ updateUnits }) => {
     updateUnits(unit);
   };
 
+  // hiihihgihihgihi4g
   return (
     <View style={settingsStyles.container}>
       <Text style={settingsStyles.title}>Unit Settings</Text>
