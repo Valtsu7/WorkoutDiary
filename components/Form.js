@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -13,6 +13,7 @@ const Form = ({ navigation }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedSport, setSelectedSport] = useState('');
   const [unit, setUnit] = useState('km');
+  const [useEffectExecuted, setUseEffectExecuted] = useState(false);
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -29,23 +30,39 @@ const Form = ({ navigation }) => {
 
   const updateUnits = (newUnit) => {
     setUnit(newUnit);
+    setUseEffectExecuted(false);
+  };
+
+  useEffect(() => {
+    console.log('useEffect triggered with unit:', unit);
+    const convertedDistance = unit === 'mi' ? parseFloat(distance) / 1.60934 : parseFloat(distance) * 1.60934;
+    setDistance(isNaN(convertedDistance) ? '' : convertedDistance.toFixed(2));
+  }, [unit]);
+
+  const convertDistance = (distance, fromUnit, toUnit) => {
+    // Muunna etäisyys eri yksiköiden välillä
+    if (fromUnit === toUnit) {
+      return distance;
+    }
+    return fromUnit === 'km' ? distance / 1.60934 : distance * 1.60934;
   };
 
   const handleAddWorkout = () => {
+    console.log('handleAddWorkout called');
     if (parseFloat(distance) < 0 || parseFloat(duration) < 0) {
       alert('Distance and duration cannot be negative.');
       return;
     }
 
-    // Convert distance based on unit
-    const convertedDistance = unit === 'mi' ? parseFloat(distance) * 0.621371 : parseFloat(distance);
+    const convertedDistance = unit === 'mi' ? parseFloat(distance) / 1.60934 : parseFloat(distance) * 1.60934;
 
     const newWorkout = {
       date: selectedDate.toLocaleDateString('en-GB'),
-      distance: convertedDistance.toFixed(2),
+      distance: distance,
       duration,
       sportType: selectedSport,
       icon: getSportIcon(selectedSport),
+      unit,
     };
 
     navigation.navigate('List', {
@@ -74,23 +91,22 @@ const Form = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>Add Workout</Text>
-      <View style={styles.buttonContainer}>
+      <View style={styles.sportButton}>
         <TouchableOpacity onPress={() => handleSportTypePress('run')}>
-          <FontAwesome5 name="running" size={20} color={selectedSport === 'run' ? 'red' : 'black'} />
+          <FontAwesome5 name="running" size={30} color={selectedSport === 'run' ? 'red' : 'blue'} />
           <Text style={[styles.buttonText, styles.runButton]}>Run</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleSportTypePress('ski')}>
-          <FontAwesome5 name="skiing" size={20} color={selectedSport === 'ski' ? 'red' : 'black'} />
+          <FontAwesome5 name="skiing" size={30} color={selectedSport === 'ski' ? 'red' : 'blue'} />
           <Text style={[styles.buttonText, styles.skiButton]}>Ski</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleSportTypePress('swim')}>
-          <FontAwesome5 name="swimmer" size={20} color={selectedSport === 'swim' ? 'red' : 'black'} />
-          <Text style={styles.buttonText}>Swim</Text>
+          <FontAwesome5 name="swimmer" size={30} color={selectedSport === 'swim' ? 'red' : 'blue'} />
+          <Text style={[styles.buttonText, styles.swimButton]}>Swim</Text>
         </TouchableOpacity>
       </View>
 
-      {/* Lisää Settings-komponentti tässä */}
-      <Settings updateUnits={updateUnits} />
+      <Settings updateUnits={updateUnits} distance={distance} setDistance={setDistance} />
 
       <TextInput
         style={styles.numericInputContainer}

@@ -36,9 +36,9 @@ export const listStyles = StyleSheet.create({
 
   },
   totalText: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
-    marginLeft: 3,
+    marginLeft: 1,
    
   },
 
@@ -51,12 +51,12 @@ export const listStyles = StyleSheet.create({
   },
 
   icon: {
-    fontSize: 20,
+    fontSize: 30,
     color: 'black',
     width: 40,
     height: 40,
-    borderRadius: 20,
-    backgroundColor: 'white',
+   
+   
    
     
     

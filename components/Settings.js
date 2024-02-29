@@ -1,10 +1,10 @@
 // Settings.js
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { RadioButton } from 'react-native-paper'; // Tämä edellyttää, että olet asentanut react-native-paper-paketinnp
+import { RadioButton } from 'react-native-paper';
 import { settingsStyles } from './settingsStyles';
 
-const Settings = ({ updateUnits }) => {
+const Settings = ({ updateUnits, distance, setDistance }) => {
   const [selectedUnit, setSelectedUnit] = useState('km');
 
   const handleUnitChange = (unit) => {
@@ -12,10 +12,9 @@ const Settings = ({ updateUnits }) => {
     updateUnits(unit);
   };
 
-  // hiihihgihihgihi4g
   return (
     <View style={settingsStyles.container}>
-      <Text style={settingsStyles.title}>Unit Settings</Text>
+      <Text style={settingsStyles.title}>Select units</Text>
 
       <TouchableOpacity onPress={() => handleUnitChange('km')}>
         <View style={settingsStyles.radioButtonContainer}>

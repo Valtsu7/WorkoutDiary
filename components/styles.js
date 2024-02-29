@@ -11,8 +11,9 @@ export const styles = StyleSheet.create({
     borderWidth: 2, // Borderin leveys
     borderRadius: 15, // Borderin pyöristys
     borderColor: 'black', // Borderin väri
-    margin: 40, // Margin kaikkiin suuntiin lisäämään tilaa ympärille
-    marginVertical: 50, // Vähennä marginaalia ylhäältä ja alhaalta
+    marginHorizontal: 40, // Margin kaikkiin suuntiin lisäämään tilaa ympärille
+    // Vähennä marginaalia ylhäältä ja alhaalta
+    backgroundColor: "#9ADDFF",
     
   }, 
   buttonContainer: {
@@ -34,15 +35,7 @@ export const styles = StyleSheet.create({
    
   },
 
-  runButton: {
-    borderRightWidth: 2, // Viivan leveys
-    borderRightColor: 'black', // Viivan väri
-    
-  },
-  skiButton: {
-    borderRightWidth: 2, // Viivan leveys
-    borderRightColor: 'black', // Viivan väri
-  },
+ 
   
   numericInputContainer: {
     backgroundColor: '#FFF',
@@ -83,5 +76,38 @@ export const styles = StyleSheet.create({
   },
   addWorkoutButtonText: {
     fontSize: 18,
+  },
+
+  sportButton: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderRadius: 20,
+    borderWidth: 2.5,
+    borderColor: 'black',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    width: '113%',
+
+  },
+  buttonText: {
+    marginTop: 1,
+    marginLeft: 10,
+    margin: 25,
+    marginVertical: 1,
+    
+  },
+  runButton: {
+    color: 'black',
+   
+  },
+  skiButton: {
+    color: 'black',
+    
+  },
+  swimButton: {
+    color: 'black',
+    
+    
+    
   },
 });

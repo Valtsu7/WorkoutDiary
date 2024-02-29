@@ -8,27 +8,56 @@ const List = ({ route }) => {
   const { workout } = route.params;
 
   const [workouts, setWorkouts] = useState([
-    { icon: 'running', distance: 2, duration: 15 },
-    { icon: 'skiing', distance: 4.5, duration: 39 },
-    { icon: 'running', distance: 2.5, duration: 15 },
-    { icon: 'running', distance: 1.5, duration: 10 },
-    { icon: 'swimmer', distance: 2.0, duration: 13 },
+    { icon: 'running', date: "01/04/2024", distance: 2, duration: 15, unit: 'km' },
+    { icon: 'skiing', date: "13/01/2024", distance: 4.5, duration: 39, unit: 'km' },
+    { icon: 'running', date: "22/01/2024", distance: 2.5, duration: 15, unit: 'km' },
+    { icon: 'running', date: "02/02/2024", distance: 1.5, duration: 10, unit: 'km' },
+    { icon: 'swimmer', date: "22/02/2024", distance: 2.0, duration: 13, unit: 'km' },
   ]);
 
   const [unit, setUnit] = useState('km');
 
+  const [totalDistances, setTotalDistances] = useState({
+    running: 0,
+    skiing: 0,
+    swimmer: 0,
+  });
+
   useEffect(() => {
+    // Päivitä yksikkö ja treenit aina kun workout muuttuu
     if (workout) {
-      setWorkouts((prevWorkouts) => [...prevWorkouts, workout]);
+      setUnit(workout.unit);
+      setWorkouts((prevWorkouts) => [...prevWorkouts, { ...workout }]);
     }
   }, [workout]);
 
-  const totalDistances = workouts.reduce((acc, cur) => {
-    acc[cur.icon] = (acc[cur.icon] || 0) + parseFloat(cur.distance);
-    return acc;
-  }, {});
+  useEffect(() => {
+    const updatedTotalDistances = workouts.reduce((acc, cur) => {
+      acc[cur.icon] = (acc[cur.icon] || 0) + parseFloat(cur.distance);
+      return acc;
+    }, {});
+    setTotalDistances(updatedTotalDistances);
+  }, [workouts]);
+
+  useEffect(() => {
+    // Päivitä treenien yksiköt, kun yksikkö muuttuu
+    setWorkouts((prevWorkouts) =>
+      prevWorkouts.map((workout) => ({
+        ...workout,
+        distance: parseFloat(workout.distance).toFixed(2),
+        unit: unit,
+      }))
+    );
+  }, [unit]);
 
   const updateUnits = (newUnit) => {
+    // Päivitä yksikkö ja treenit uuteen yksikköön
+    setWorkouts((prevWorkouts) =>
+      prevWorkouts.map((workout) => ({
+        ...workout,
+        unit: newUnit,
+      }))
+    );
     setUnit(newUnit);
   };
 
@@ -36,41 +65,35 @@ const List = ({ route }) => {
     <ScrollView style={listStyles.container}>
       <Text style={listStyles.totalText2}>List of workouts</Text>
 
-      {/* Lisää Settings-komponentti tässä */}
-      <Settings updateUnits={updateUnits} />
-
       <View style={listStyles.totalContainer}>
         <View style={listStyles.totalRow}>
           <FontAwesome5 name="running" style={listStyles.icon} />
-          <Text style={listStyles.totalText}>{totalDistances.running || 0} {unit}</Text>
+          <Text style={listStyles.totalText}>
+            {totalDistances.running.toFixed(2) || 0} {unit}
+          </Text>
         </View>
         <View style={listStyles.totalRow}>
           <FontAwesome5 name="skiing" style={listStyles.icon} />
-          <Text style={listStyles.totalText}>{totalDistances.skiing || 0} {unit}</Text>
+          <Text style={listStyles.totalText}>
+            {totalDistances.skiing.toFixed(2) || 0} {unit}
+          </Text>
         </View>
         <View style={listStyles.totalRow}>
           <FontAwesome5 name="swimmer" style={listStyles.icon} />
-          <Text style={listStyles.totalText}>{totalDistances.swimmer || 0} {unit}</Text>
+          <Text style={listStyles.totalText}>
+            {totalDistances.swimmer.toFixed(2) || 0} {unit}
+          </Text>
         </View>
       </View>
 
       {workouts.map((workout, index) => (
         <View key={index} style={listStyles.workoutContainer}>
           <FontAwesome5 name={workout.icon} style={listStyles.icon} />
-          <Text style={listStyles.workoutText}>{workout.date}</Text>
-          <Text style={listStyles.workoutText}>{`Distance: ${workout.distance} ${unit}`}</Text>
+          <Text style={listStyles.workoutText}>{`${workout.date}`}</Text>
+          <Text style={listStyles.workoutText}>{`Distance: ${workout.distance} ${workout.unit}`}</Text>
           <Text style={listStyles.workoutText}>{`Duration: ${workout.duration} min`}</Text>
         </View>
       ))}
-
-      {workout && (
-        <View style={listStyles.workoutContainer}>
-          <FontAwesome5 name={workout.icon} style={listStyles.icon} />
-          <Text style={listStyles.workoutText}>{`${workout.date}`}</Text>
-          <Text style={listStyles.workoutText}>{`Distance: ${workout.distance} ${unit}`}</Text>
-          <Text style={listStyles.workoutText}>{`Duration: ${workout.duration} min`}</Text>
-        </View>
-      )}
     </ScrollView>
   );
 };
