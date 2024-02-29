@@ -24,7 +24,7 @@ const List = ({ route }) => {
   });
 
   useEffect(() => {
-    // Päivitä yksikkö ja treenit aina kun workout muuttuu
+    
     if (workout) {
       setUnit(workout.unit);
       setWorkouts((prevWorkouts) => [...prevWorkouts, { ...workout }]);
@@ -40,7 +40,7 @@ const List = ({ route }) => {
   }, [workouts]);
 
   useEffect(() => {
-    // Päivitä treenien yksiköt, kun yksikkö muuttuu
+   
     setWorkouts((prevWorkouts) =>
       prevWorkouts.map((workout) => ({
         ...workout,
@@ -51,7 +51,7 @@ const List = ({ route }) => {
   }, [unit]);
 
   const updateUnits = (newUnit) => {
-    // Päivitä yksikkö ja treenit uuteen yksikköön
+    
     setWorkouts((prevWorkouts) =>
       prevWorkouts.map((workout) => ({
         ...workout,

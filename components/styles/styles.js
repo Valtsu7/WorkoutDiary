@@ -8,11 +8,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
-    borderWidth: 2, // Borderin leveys
-    borderRadius: 15, // Borderin pyöristys
-    borderColor: 'black', // Borderin väri
-    marginHorizontal: 40, // Margin kaikkiin suuntiin lisäämään tilaa ympärille
-    // Vähennä marginaalia ylhäältä ja alhaalta
+    borderWidth: 2, 
+    borderRadius: 15, 
+    borderColor: 'black', 
+    marginHorizontal: 40, 
     backgroundColor: "#9ADDFF",
     
   }, 
@@ -70,7 +69,7 @@ text1: {
     borderColor: 'black',
     padding: 10,
     marginVertical: 10,
-    width: '100%', // Tehdään dateInputContainer niin leveäksi kuin mahdollista
+    width: '100%', 
     alignItems: 'center',
   },
 

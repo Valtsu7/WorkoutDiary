@@ -40,7 +40,7 @@ const Form = ({ navigation }) => {
   }, [unit]);
 
   const convertDistance = (distance, fromUnit, toUnit) => {
-    // Muunna etäisyys eri yksiköiden välillä
+    
     if (fromUnit === toUnit) {
       return distance;
     }

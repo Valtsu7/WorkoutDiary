@@ -6,6 +6,8 @@ export const listStyles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: "#9ADDFF",
+    
   },
 
 
@@ -82,8 +84,8 @@ export const listStyles = StyleSheet.create({
     color: 'green',
     marginRight: 15,
     marginLeft: 7,
-    position: 'absolute', // Lisätty position absolute
-    top: 14, // Voit säätää tätä arvoa tarpeidesi mukaan
+    position: 'absolute', 
+    top: 14, 
     left: 12,
   },
 
