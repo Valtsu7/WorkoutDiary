@@ -7,16 +7,8 @@ export const listStyles = StyleSheet.create({
     flex: 1,
     padding: 20,
   },
-  workoutContainer: {
-    marginBottom: 20,
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 8,
-  },
-  workoutText: {
-    fontSize: 16,
-    marginBottom: 5,
-  },
+
+
 
 
   totalContainer: {
@@ -25,6 +17,7 @@ export const listStyles = StyleSheet.create({
     marginBottom: 20,
     
   },
+
   totalRow: {
     flex: 1,
     borderWidth: 1,
@@ -33,21 +26,31 @@ export const listStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#c1d1e0',
+    margin: 1,
 
   },
+
   totalText: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: 'bold',
     marginLeft: 1,
    
   },
 
   totalText2: {
-    fontSize: 18,
+    fontSize: 30,
     fontWeight: 'bold',
-    marginLeft: 10,
-    marginVertical: 20,
+    marginLeft: 40,
+    marginVertical: 30,
     
+  },
+
+  totalText3: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginLeft: 100,
+    marginVertical: 5,
+    flexDirection: 'column',
   },
 
   icon: {
@@ -55,14 +58,34 @@ export const listStyles = StyleSheet.create({
     color: 'black',
     width: 40,
     height: 40,
-   
-   
-   
+  },
+
+ workoutContainer: {
     
-    
+    marginBottom: 20,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 8,
+   
     
   },
 
+  workoutText: {
+    fontSize: 16,
+    marginBottom: 5,
+    marginLeft: 100,
+  },
+
+
+  icon2: {
+    fontSize: 70,
+    color: 'green',
+    marginRight: 15,
+    marginLeft: 7,
+    position: 'absolute', // Lisätty position absolute
+    top: 14, // Voit säätää tätä arvoa tarpeidesi mukaan
+    left: 12,
+  },
 
  
 });

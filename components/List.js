@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import Settings from './Settings';
-import { listStyles } from './liststyles';
+import { listStyles } from './styles/liststyles';
 
 const List = ({ route }) => {
   const { workout } = route.params;
@@ -64,7 +64,7 @@ const List = ({ route }) => {
   return (
     <ScrollView style={listStyles.container}>
       <Text style={listStyles.totalText2}>List of workouts</Text>
-
+      <Text style={listStyles.totalText3}>Total distances</Text>
       <View style={listStyles.totalContainer}>
         <View style={listStyles.totalRow}>
           <FontAwesome5 name="running" style={listStyles.icon} />
@@ -88,7 +88,7 @@ const List = ({ route }) => {
 
       {workouts.map((workout, index) => (
         <View key={index} style={listStyles.workoutContainer}>
-          <FontAwesome5 name={workout.icon} style={listStyles.icon} />
+          <FontAwesome5 name={workout.icon} style={listStyles.icon2} />
           <Text style={listStyles.workoutText}>{`${workout.date}`}</Text>
           <Text style={listStyles.workoutText}>{`Distance: ${workout.distance} ${workout.unit}`}</Text>
           <Text style={listStyles.workoutText}>{`Duration: ${workout.duration} min`}</Text>

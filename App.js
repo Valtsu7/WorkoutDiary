@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Form from './components/Form';
 import List from './components/List';
 import Settings from './components/Settings';
-import i18n from './i18n'; // Lisää tämä rivi
+
 
 const Stack = createStackNavigator();
 

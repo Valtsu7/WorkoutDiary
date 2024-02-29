@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import Settings from './Settings';
-import { styles } from './styles';
+import { styles } from './styles/styles';
 
 const Form = ({ navigation }) => {
   const [sportType, setSportType] = useState('');
@@ -90,7 +90,8 @@ const Form = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text>Add Workout</Text>
+      <Text style={styles.text}>Add Workout</Text>
+      <Text style={styles.text1}> Choose type </Text>
       <View style={styles.sportButton}>
         <TouchableOpacity onPress={() => handleSportTypePress('run')}>
           <FontAwesome5 name="running" size={30} color={selectedSport === 'run' ? 'red' : 'blue'} />

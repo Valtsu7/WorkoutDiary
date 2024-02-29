@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { RadioButton } from 'react-native-paper';
-import { settingsStyles } from './settingsStyles';
+import { settingsStyles } from './styles/settingsStyles';
 
 const Settings = ({ updateUnits, distance, setDistance }) => {
   const [selectedUnit, setSelectedUnit] = useState('km');

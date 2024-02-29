@@ -16,6 +16,18 @@ export const styles = StyleSheet.create({
     backgroundColor: "#9ADDFF",
     
   }, 
+
+text: {
+fontSize: 30,
+marginBottom: 50,
+},
+
+
+text1: {
+  fontSize: 20,
+  marginBottom: 10,
+  },
+
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -82,8 +94,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderRadius: 20,
-    borderWidth: 2.5,
-    borderColor: 'black',
     paddingVertical: 10,
     paddingHorizontal: 20,
     width: '113%',
@@ -98,6 +108,7 @@ export const styles = StyleSheet.create({
   },
   runButton: {
     color: 'black',
+    
    
   },
   skiButton: {
